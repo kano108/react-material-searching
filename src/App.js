@@ -34,26 +34,33 @@ function App() {
   //   setItems(filter_value);
   // };
 
-  const requestsearch = (searchedVal ) => {
-    console.log("searchedVal" ,searchedVal);
+  const requestsearch = (searchedVal) => {
+    console.log("searchedVal", searchedVal);
     const filter_value = item.filter((elem) => {
-      if(searchedVal)
+      if (searchedVal) 
       {
         return elem.Name.toLowerCase().includes(searchedVal.toLowerCase());
-      }
-      else
+      } 
+      else 
       {
-        return item
+       
+        return getdata()
       }
-      
     });
-    setItems(filter_value);
+    if(searchedVal.length==0)
+    {
+      setItems(getdata());
+    }
+    else{
+      setItems(filter_value);
+
+    }
   };
 
   // const cancelSearch = () => {
   //   setSearchInput("");
   //   requestsearch(searchInput);
-    
+
   // };
 
   return (
@@ -71,12 +78,10 @@ function App() {
       </button>
       <br />
       <br />
-      <SearchBar value={searchInput} onChange={(e) =>requestsearch(e)}  />
-      {
-          item.map((elem) => {
-            return <h1>{elem.Name}</h1>;
-          })
-      }
+      <SearchBar value={searchInput} onChange={(e) => requestsearch(e)} />
+      {item.map((elem) => {
+        return <h1>{elem.Name}</h1>;
+      })}
     </div>
   );
 }
