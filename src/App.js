@@ -14,7 +14,7 @@ const getdata = () => {
 function App() {
   const [input, setInput] = useState("");
   const [item, setItems] = useState(getdata());
-  const [searchInput ,setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const submit = (e) => {
     e.preventDefault();
     const allData = {
@@ -34,13 +34,27 @@ function App() {
   //   setItems(filter_value);
   // };
 
-  const requestsearch = (searchedVal = String) => {
+  const requestsearch = (searchedVal ) => {
+    console.log("searchedVal" ,searchedVal);
     const filter_value = item.filter((elem) => {
-      return elem.Name.toLowerCase().includes(searchedVal.toLowerCase());
+      if(searchedVal)
+      {
+        return elem.Name.toLowerCase().includes(searchedVal.toLowerCase());
+      }
+      else
+      {
+        return item
+      }
+      
     });
     setItems(filter_value);
   };
 
+  // const cancelSearch = () => {
+  //   setSearchInput("");
+  //   requestsearch(searchInput);
+    
+  // };
 
   return (
     <div className="App">
@@ -57,11 +71,12 @@ function App() {
       </button>
       <br />
       <br />
-      <SearchBar value={searchInput} onChange={(searchVal) => requestsearch(searchVal)} />
+      <SearchBar value={searchInput} onChange={(e) =>requestsearch(e)}  />
       {
-       item.map((elem) => {
-          return <h1>{elem.Name}</h1>;
-        })}
+          item.map((elem) => {
+            return <h1>{elem.Name}</h1>;
+          })
+      }
     </div>
   );
 }
