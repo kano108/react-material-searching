@@ -26,26 +26,11 @@ function App() {
     setInput("");
   };
 
-  // const requestsearch = (searchedVal = String) => {
-
-  //   const filter_value = item.filter((elem) => {
-  //     return elem.Name.toLowerCase().includes(searchedVal.toLowerCase());
-  //   });
-  //   setItems(filter_value);
-  // };
-
+  
   const requestsearch = (searchedVal) => {
     console.log("searchedVal", searchedVal);
     const filter_value = item.filter((elem) => {
-      if (searchedVal) 
-      {
         return elem.Name.toLowerCase().includes(searchedVal.toLowerCase());
-      } 
-      else 
-      {
-       
-        return getdata()
-      }
     });
     if(searchedVal.length==0)
     {
@@ -57,11 +42,7 @@ function App() {
     }
   };
 
-  // const cancelSearch = () => {
-  //   setSearchInput("");
-  //   requestsearch(searchInput);
-
-  // };
+  
 
   return (
     <div className="App">
